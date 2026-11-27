@@ -2,9 +2,10 @@ import { LoginForm } from '../modules/auth/components/LoginForm'
 
 type LoginPageProps = {
   onLogin: (username: string, password: string) => boolean
+  onRegister: () => void
 }
 
-export function LoginPage({ onLogin }: LoginPageProps) {
+export function LoginPage({ onLogin, onRegister }: LoginPageProps) {
   return (
     <main className="relative flex min-h-screen items-center justify-center overflow-hidden bg-slate-50 px-4 py-10">
       <div aria-hidden="true" className="pointer-events-none absolute -left-36 -top-40 h-96 w-96 rounded-full bg-indigo-200/50 blur-3xl" />
@@ -51,6 +52,16 @@ export function LoginPage({ onLogin }: LoginPageProps) {
               Ingresa tus datos para continuar al panel principal.
             </p>
             <LoginForm onLogin={onLogin} />
+            <p className="mt-6 text-center text-sm text-slate-600">
+              ¿No tienes cuenta?{' '}
+              <button
+                className="font-semibold text-indigo-700 hover:text-indigo-900"
+                onClick={onRegister}
+                type="button"
+              >
+                Regístrate
+              </button>
+            </p>
           </div>
         </section>
       </div>
