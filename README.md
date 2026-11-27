@@ -1,5 +1,13 @@
 # React Login Monorepo
 
+**Course:** Web Programming
+
+## Team members
+
+- Bruno Sampedro
+- Esteban Narváez
+- Daniel Tumbaco
+
 Monorepo using npm workspaces. The React + TypeScript web app is in `apps/web`; the API workspace is in `apps/api`.
 
 ## Setup
