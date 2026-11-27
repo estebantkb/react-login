@@ -1,6 +1,6 @@
 # React Login Monorepo
 
-Monorepo using npm workspaces. The React + TypeScript web app is in `apps/web`; the API workspace is in `apps/api`.
+Monorepo using npm workspaces. The React + TypeScript web app is in `apps/web`.
 
 ## Setup
 
@@ -9,7 +9,7 @@ npm install
 npm run dev
 ```
 
-The web app runs with Vite. Add API scripts and dependencies to `apps/api/package.json` when the API implementation is ready.
+The web app runs with Vite.
 
 ## Build and lint
 
