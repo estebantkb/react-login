@@ -1,5 +1,6 @@
 type DashboardPageProps = {
   onLogout: () => void
+  onNavigate?: (path: string) => void
 }
 
 type Application = {
@@ -38,7 +39,7 @@ const applications: Application[] = [
   },
 ]
 
-export function DashboardPage({ onLogout }: DashboardPageProps) {
+export function DashboardPage({ onLogout, onNavigate }: DashboardPageProps) {
   return (
     <main className="min-h-screen bg-slate-50">
       <header className="border-b border-slate-200 bg-white">
@@ -72,6 +73,12 @@ export function DashboardPage({ onLogout }: DashboardPageProps) {
               className="group flex min-h-64 flex-col items-start rounded-3xl border border-slate-200 bg-white p-6 text-left shadow-sm transition hover:-translate-y-1 hover:border-indigo-200 hover:shadow-xl hover:shadow-indigo-100/60 focus:outline-none focus:ring-4 focus:ring-indigo-100"
               href={application.href}
               key={application.id}
+              onClick={(event) => {
+                if (onNavigate) {
+                  event.preventDefault()
+                  onNavigate(application.href)
+                }
+              }}
             >
               <div className="mb-7 flex w-full items-center justify-between">
                 <span className={`grid h-14 w-14 place-items-center rounded-2xl text-2xl font-bold ring-1 ${application.color}`}>

@@ -12,11 +12,16 @@ const INITIAL_INFO: ApiInfo = {
   prev: null,
 };
 
+interface RickAndMortyPageProps {
+  onBack?: () => void;
+  onLogout?: () => void;
+}
+
 /**
  * Displays the Rick & Morty character directory with debounced search,
  * pagination, and a detail popup modal.
  */
-export function RickAndMortyPage() {
+export function RickAndMortyPage({ onBack, onLogout }: RickAndMortyPageProps) {
   const [searchInput, setSearchInput] = useState('');
   const debouncedSearch = useDebounce(searchInput, 400);
 
@@ -80,7 +85,36 @@ export function RickAndMortyPage() {
   }, [page, debouncedSearch, reloadCounter]);
 
   return (
-    <section className="mx-auto w-full max-w-6xl px-3 py-6 sm:px-4 sm:py-8">
+    <main className="min-h-screen bg-slate-50">
+      {(onBack || onLogout) && (
+        <div className="border-b border-slate-200 bg-white">
+          <div className="mx-auto flex max-w-6xl items-center justify-between gap-3 px-3 py-3 sm:px-4">
+            {onBack ? (
+              <button
+                type="button"
+                onClick={onBack}
+                className="rounded-lg border border-slate-200 px-3 py-1.5 text-sm font-medium text-slate-700 transition hover:bg-slate-100"
+              >
+                &larr; Back to Dashboard
+              </button>
+            ) : (
+              <span />
+            )}
+
+            {onLogout && (
+              <button
+                type="button"
+                onClick={onLogout}
+                className="rounded-lg border border-slate-200 px-3 py-1.5 text-sm font-medium text-slate-600 transition hover:bg-slate-100 hover:text-slate-900"
+              >
+                Logout
+              </button>
+            )}
+          </div>
+        </div>
+      )}
+
+      <section className="mx-auto w-full max-w-6xl px-3 py-6 sm:px-4 sm:py-8">
       <header className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
         <div>
           <h1 className="text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">
@@ -203,6 +237,7 @@ export function RickAndMortyPage() {
         character={selectedCharacter}
         onClose={() => setSelectedCharacter(null)}
       />
-    </section>
+      </section>
+    </main>
   );
 }
