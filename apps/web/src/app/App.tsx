@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { DashboardPage } from '../pages/DashboardPage';
 import { LoginPage } from '../pages/LoginPage';
+import { RegisterPage } from '../pages/RegisterPage';
 import { useDemoAuth } from '../modules/auth/hooks/useDemoAuth';
 import { RickAndMortyPage } from '../modules/api/components/RickAndMortyPage.tsx';
 
@@ -27,7 +28,11 @@ export default function App() {
   };
 
   if (!isAuthenticated) {
-    return <LoginPage onLogin={login} />;
+    if (currentPath === '/register') {
+      return <RegisterPage onBack={() => navigate('/')} />;
+    }
+
+    return <LoginPage onLogin={login} onRegister={() => navigate('/register')} />;
   }
 
   if (currentPath === '/api') {
