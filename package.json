@@ -1,0 +1,17 @@
+{
+  "name": "react-login",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "apps/*"
+  ],
+  "scripts": {
+    "dev": "npm run dev --workspace=@react-login/web",
+    "build": "npm run build --workspace=@react-login/web",
+    "lint": "npm run lint --workspace=@react-login/web"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/estebantkb/react-login.git"
+  }
+}
